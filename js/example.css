@@ -1,0 +1,99 @@
+.app {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    color: rgba(100, 100, 100, 0.87);
+}
+
+.header {
+
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    background-color: pink;
+    margin: 0;
+    font-size: large;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer {
+    display: flex;
+    background-color: lightgray;
+    justify-content: center;
+    margin: 0;
+    flex-grow: 1;
+    align-items: flex-end;
+    font-size: small;
+}
+text {
+    color: rgba(100, 100, 100, 0.87);
+    font-weight: 600;
+    opacity: 0.87;
+    font-size: large;
+}
+.body {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 13;
+}
+.center {
+    display: flex;
+    width: 960px;
+    background-size: cover;
+    background-color: rgb(0, 128, 0);
+    align-items: center;
+    justify-content: center;
+}
+.right {
+    display: flex;
+    flex-grow: 1;
+    background-color: blue;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.left {
+    display: flex;
+    flex-grow: 1;
+    background-color: red;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.button {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: white;
+    font-size: medium;
+}
+.multButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: gray;
+    font-size: medium;
+}
+#clear {
+    background-color: yellow;
+    height: 50px;
+    width: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
