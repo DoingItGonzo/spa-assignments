@@ -7,16 +7,7 @@ let saveIt = true;
 
 let addButt = () => {
     theTotal = theTotal + addButton;
-    if(theTotal < 10) {
-        $("#multButton").css("background-color", "gray")
-    } else {
-        $("#multButton").css("background-color", "white")
-    } 
-    if (theTotal < 100) {
-        $("#autoButton").css("background-color", "gray");
-    } else {
-        $("#multButton").css("background-color", "white");
-    }
+    colorCheck();
     $('#total').text("Total: "+theTotal.toFixed(2));
 }
 let multiButt = () => {
@@ -25,9 +16,8 @@ let multiButt = () => {
         addButton = addButton * 1.2;
         $("#button").text("+" + addButton.toFixed(2));
         $("#total").text("Total: " + theTotal.toFixed(2));
-    } if (theTotal < 10) {
-        $("#multButton").css("background-color", "gray");
-    }  
+    } 
+    colorCheck();
 }
 let autoButt = () => {
     if (theTotal>=100) {
@@ -36,28 +26,17 @@ let autoButt = () => {
         autoButtons++;
         $("#autoCounter").text("Autocounters: " + autoButtons); 
     }
+    colorCheck();
+}
+let colorCheck = () => {
+    if (theTotal < 100) 
+        $("#autoButton").css("background-color", "gray");
+    else 
+        $("#autoButton").css("background-color", "white");
     if (theTotal < 10) 
         $("#multButton").css("background-color", "gray"); 
-}
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-let autoButtRestart = (count) => {
-    for (let i = 0; i < count; i++) {
-        setInterval(addButt, 1000);
-    }
-    document.cookie = 'autos=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path';       
+    else
+        $("#multButton").css("background-color", "white");
 }
 $(document).ready(function(){
     $("#button").click(() => {
@@ -75,14 +54,46 @@ $(document).ready(function(){
         autoButt();
     });
 });
+
+
+
+
 $(document).ready(function(){
     $("#clear").click(() => {
+        theTotal = 0;
+        autoButtons = 0;
+        addButton = 1;
+        $('#total').text("Total: "+theTotal.toFixed(2));
+        $("#button").text("+" + addButton.toFixed(2));
+        $("#autoCounter").text("Autocounters: " + autoButtons); 
         document.cookie = 'total=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path';
         document.cookie = 'autos=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path';
         document.cookie = 'add=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path';
         saveIt = false;
+        location.reload();
+
     });
 });
+let autoButtRestart = (count) => {
+    for (let i = 0; i < count; i++) {
+        setInterval(addButt, 1000);
+    }
+    document.cookie = 'autos=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path';       
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) === 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 $(document).ready(function(){
     theTotal = Number(getCookie('total'));
     autoButtons = Number(getCookie('autos'));
